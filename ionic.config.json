@@ -1,0 +1,7 @@
+{
+  "name": "gimnasio-tsm",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
