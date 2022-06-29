@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-menu-button menu="first" color="primary"></ion-menu-button>
+    </ion-buttons>
+    <!-- <ion-buttons slot="start">
+      <ion-button (click)="mostrarMenu()" color="primary">
+        <ion-icon slot="icon-only" name="menu-outline"></ion-icon>
+        
+      </ion-button> -->
+
+    <!-- </ion-buttons> -->
+    <!-- <ion-avatar>
+      <img src="/assets/icon/logoTSM.png" />
+    </ion-avatar> -->
+    <!-- <img src="/assets/icon/logoTSM.png"> -->
+    <ion-title>GYM Transportes Santa Maria</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-item *ngFor="let c of componentes|async"
+        [routerLink]="c.redirectTo"
+        detail>
+      <ion-icon [name]="c.icon" 
+                slot="start"
+                color="primary"
+      ></ion-icon>
+
+      {{c.name}}
+
+    </ion-item>
+    
+  </ion-list>
+
+</ion-content>
+
+  
+      
+<ion-button expand="block" color="danger"
+(click)="logout()">
+  <ion-icon name="log-out-outline"
+            slot="start"></ion-icon>
+  Cerrar Sesion</ion-button>
+    
+  
+ 
+

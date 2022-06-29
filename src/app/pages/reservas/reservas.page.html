@@ -1,0 +1,45 @@
+<app-header titulo="Reservas"></app-header>
+
+<ion-content>
+
+
+
+    <!-- Refresher -->
+
+
+
+
+
+    <!-- Posts -->
+    <ion-grid fixed>
+        <ion-row>
+            <ion-col size="12" 
+                     *ngFor="let post of posts"
+                     >
+                <ion-list>
+                    <ion-item>
+                        <app-post [post]="post"></app-post>
+                        <ion-button (click)="presentAlertMultipleButtons()"
+                                    color="danger"
+                                    size="small"
+                                    slot="end"
+                                    (click)="horario.horario= post.horario"
+                                    (click)="horario.fecha= post.fecha"
+                                    (click)="idPost=post._id"
+                                     >
+                            Anular Reserva
+                        </ion-button>
+                    </ion-item>
+                </ion-list>
+                
+            </ion-col>
+          
+      
+        </ion-row>
+      </ion-grid>
+    <!-- <app-posts [posts]="posts">
+        <ion-button (click)="crearHorario()" expand="block" fill="clear" shape="round">
+            Click me
+        </ion-button>
+    </app-posts> -->
+</ion-content>

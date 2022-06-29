@@ -1,0 +1,135 @@
+<app-header titulo="Reservas de Horas"></app-header>
+<ion-content>
+   <ion-list>
+    <ion-item>
+      <ion-label position="floating">Fecha</ion-label>
+      <ion-input  [value]="dateValue2"
+                  [(ngModel)]="post.fecha" mbsc-date></ion-input>
+      <ion-button fill="clear" id="open-date-input-2" slot="end">
+        <ion-icon icon="calendar"></ion-icon>
+      </ion-button>
+      <ion-popover trigger="open-date-input-2" show-backdrop="false">
+        <ng-template>
+        <ion-datetime
+            #popoverDatetime2
+            [min]="today"
+            presentation="date"
+            (ionChange)="dateValue2 = formatDate(popoverDatetime2.value)"
+          >
+          
+        </ion-datetime> 
+        
+        </ng-template>
+      </ion-popover>
+    </ion-item> 
+  
+  </ion-list>
+
+ 
+    
+      <ion-button (click)="getHorario()" expand="block" [disabled]="post.fecha.length < 1">
+        Buscar Horas Disponibles
+      </ion-button>
+
+      
+    
+    
+ 
+ 
+
+  <section>
+    <ion-list >
+        <ion-list-header>
+          <ion-label>
+            Horarios Disponibles
+          </ion-label>
+        </ion-list-header>
+
+        
+    
+        <ion-grid fixed>
+          <ion-row>
+              <ion-col size="12">
+                <ion-list >
+                  <ion-radio-group [(ngModel)]="post.horario" 
+                  *ngFor="let horario of Horario"
+                  (ngModelChange)="idHorario=onHorario(horario._id)" >
+                    
+                    <ion-item >
+                      <ion-button (click)="post.horario=horario.horario"
+                                  (click)="idHorario=horario._id"
+                                  [ngClass]="isClicked() ? '--color= red': 'btn'"
+                                  (click)="presentAlert()" >
+                                  {{horario.horario}}
+                      </ion-button>
+                      <!-- <ion-label>{{horario.horario}}</ion-label>
+                      <ion-radio          
+                                
+                                
+                                #selectedHorario
+                                
+                                [value]="horario.horario"
+                                slot="end"
+                                >
+                                
+                      </ion-radio>
+                               -->
+                                
+                      
+                  
+                
+                
+                      <!-- <select  [(ngModel)]="post.horario"          
+                               class="form-control"
+                               #selectedHorario
+                               [id]=" horario._id"
+
+                               (ngModelChange)="idHorario=onHorario(selectedHorario.id)"
+                               
+                               >
+                        <option  
+                                
+                                [value]="horario.horario"
+                                >
+                          <app-horario [horario]="horario"></app-horario>
+                        </option>
+                      </select>  -->
+
+                
+                  <!-- <select  [(ngModel)]="post.horario"
+                          
+                         class="form-control">
+                    <option *ngFor="let horario of Horario" 
+                          [value]="horario.horario" 
+                          (ngModelChange)="onHorario(horario._id)"
+                          >
+                          {{horario._id}}
+                          <app-horario [horario]="horario"></app-horario>
+                    </option>
+                  </select> -->
+                </ion-item>
+              </ion-radio-group>
+            </ion-list>
+              </ion-col>
+              
+        
+          </ion-row>
+        </ion-grid>  
+        
+      
+    </ion-list>
+    
+  </section>
+
+
+        
+
+ 
+  
+  
+</ion-content>
+
+
+
+
+

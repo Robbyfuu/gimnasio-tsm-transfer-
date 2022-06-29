@@ -1,0 +1,12 @@
+[
+
+    {
+      "icon": "barbell-outline",
+      "name": "Reservar Hora",
+      "redirectTo":"/reservarHora"
+    },
+    {
+      "icon": "calendar-outline",
+      "name": "Mis Reservas",
+      "redirectTo":"/reservas"
+    }]
