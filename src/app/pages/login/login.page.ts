@@ -64,6 +64,7 @@ export class LoginPage implements OnInit {
     if (valido){
       //navegar al menu
       this.navCtrl.navigateRoot('/main', {animated:true});
+      this.UiService.alertaInformativa("Usuario creado con exito");
     }else{
       //aleta usuario contraseña incorrecto
       this.UiService.alertaInformativa("El Usuario ya existe");

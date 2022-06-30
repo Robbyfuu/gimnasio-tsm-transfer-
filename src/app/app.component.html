@@ -1,4 +1,5 @@
-<!-- <ion-menu side="start" menuId="first" contentId="main">
+<ion-app>
+ <ion-menu side="start" menuId="first" contentId="main">
   <ion-header>
     <ion-toolbar color="primary">
       <ion-title>Menu</ion-title>
@@ -6,8 +7,8 @@
   </ion-header>
   <ion-content>
     <ion-list>
-      <ion-menu-toggle *ngFor="let c of componentes|async" >
-        <ion-item 
+      <ion-menu-toggle  >
+        <ion-item *ngFor="let c of componentes|async"
                   [routerLink]="c.redirectTo"
                   detail>
         <ion-icon [name]="c.icon" 
@@ -18,14 +19,22 @@
         {{c.name}}
   
       </ion-item>
+      <ion-item>
+        <ion-button expand="block" color="danger"
+                    (click)="logout()">
+          <ion-icon name="log-out-outline"
+                    slot="start"></ion-icon>
+          Cerrar Sesion</ion-button>
+      </ion-item>
       </ion-menu-toggle>
-      
+     
       
     </ion-list>
   </ion-content>
-</ion-menu> -->
+
+</ion-menu> 
 
 
-<ion-app>
+
   <ion-router-outlet id = "main"></ion-router-outlet>
 </ion-app>
