@@ -3,6 +3,7 @@ import { Post } from 'src/app/Interfaces/interfaces';
 import { PostsService } from '../../services/posts.service';
 import { HorarioService } from 'src/app/services/horario.service';
 import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 import { Usuario } from '../../Interfaces/interfaces';
 
 @Component({
@@ -23,7 +24,8 @@ export class ReservasPage implements OnInit {
   
   constructor(private PostsService : PostsService,
               private horarioService: HorarioService,
-              private alertController:AlertController) { }
+              private alertController:AlertController,
+              private route: Router) { }
 
   async crearHorario() {
 
@@ -39,22 +41,24 @@ export class ReservasPage implements OnInit {
   async presentAlertMultipleButtons() {
     const alert = await this.alertController.create({
       
-      header: 'Anular Hora',
+      header: 'Anular Reserva',
       //subHeader: 'Subtitle',
-      message: '¿Estás seguro de anular tu hora reservada? Fecha:'+this.horario.fecha + 'Horario: '+this.horario.horario,
+      message: '¿Estás seguro de anular tu hora reservada? ',
       buttons: [{
-        text:'ok',
+        text:'Si',
         handler: ()=> {
           console.log(this.horario, this.idPost);
           const creado =  this.horarioService.crearHorario( this.horario );
           this.deletePost();
-          // this.getPost();
-          this.ngOnInit();
+          
+          
 
           this.horario = {
             fecha:'',
             horario:''
           };
+          
+          this.route.navigateByUrl('/main');
         }
       },
       {

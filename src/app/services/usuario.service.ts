@@ -32,7 +32,7 @@ export class UsuarioService {
                     'Access-Control-Allow-Origin':URL,
                     }
     };
-        console.log("esta es la data:",data);
+    
       return new Promise(resolve=>{
         this.http.post(`${ URL}/user/login`,data)
         .subscribe( resp =>{
