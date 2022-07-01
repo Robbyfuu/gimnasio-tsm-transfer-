@@ -24,6 +24,7 @@
                     <ion-input name="rut"
                                 type="rut"
                                 [(ngModel)]="loginUser.rut"
+                                placeholder="Ejemplo:  123456789-0"
                                 required></ion-input>
                   </ion-item>
 
@@ -43,7 +44,9 @@
             <ion-col>
               <ion-button type="submit"
                           color="tertiary"
-                          shape="round">
+                          shape="round"
+                          [disabled]="loginUser.rut.length<9"
+                          >
                 Login
               </ion-button>
             </ion-col>
@@ -116,7 +119,11 @@
                 <ion-col>
                     <ion-button type="submit"
                                 color="tertiary"
-                                shape="round">
+                                shape="round"
+                                [disabled]="registerUser.rut.length<9"
+                                [disabled]="registerUser.nombre.length<1"
+                                [disabled]="registerUser.password.length<1"
+                                >
                         Crear usuario
                     </ion-button>
                 </ion-col>
