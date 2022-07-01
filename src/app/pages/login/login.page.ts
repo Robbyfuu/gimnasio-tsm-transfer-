@@ -18,16 +18,16 @@ export class LoginPage implements OnInit {
 
  
   loginUser={
-    rut:'18463943-1',
-    password:'123456'
+    rut:'',
+    password:''
   };
 
 
   registerUser:Usuario={
-    rut: '111111-1',
-    password:'123456',
-    nombre:'Juan Lopez',
-    telefono: 7851232
+    rut: '',
+    password:'',
+    nombre:'',
+    telefono: null
 
   };
   constructor(private UsuarioService:UsuarioService,
