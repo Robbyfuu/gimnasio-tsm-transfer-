@@ -5,6 +5,7 @@ import { HorarioService } from 'src/app/services/horario.service';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Usuario } from '../../Interfaces/interfaces';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-reservas',
@@ -21,6 +22,9 @@ export class ReservasPage implements OnInit {
     
   };
   idPost='';
+  today: any;
+  pipe = new DatePipe('en-US');
+  changedDate = '';
   
   constructor(private PostsService : PostsService,
               private horarioService: HorarioService,
@@ -83,7 +87,9 @@ export class ReservasPage implements OnInit {
       })
     console.log(this.idPost);
   }
-  ngOnInit() {
+  ngOnInit(event?) {
+    this.getDate();
+    this.cambioFormato();
     while(this.posts.length>0){
       this.posts.pop();
     }
@@ -92,6 +98,26 @@ export class ReservasPage implements OnInit {
         console.log(resp);
         this.posts.push(...resp.posts);
       })
+
+  }
+  doRefresh(event){
+    this.ngOnInit(event);
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 1000);
+
+  }
+  getDate(){
+
+    const date = new Date(); this.today = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
+    
+
+  }
+  cambioFormato(){
+    let ChangedFormat = this.pipe.transform(this.today, 'dd-MM-YYYY');
+    this.changedDate = ChangedFormat;
+    console.log(this.changedDate);
   }
 
 }

@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Horario } from 'src/app/Interfaces/interfaces';
 import { HorarioService } from '../../services/horario.service';
 import { AlertController } from '@ionic/angular';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -26,7 +27,8 @@ export class ReservarHoraPage implements OnInit {
   Horario: Horario[]= [];
   idHorario='';
   isClick: boolean=false;
-  
+  pipe = new DatePipe('en-US');
+  changedDate = '';
 
   
   constructor(private postsService: PostsService,
@@ -149,8 +151,12 @@ export class ReservarHoraPage implements OnInit {
 
   
   
-  ngOnInit() {
+  ngOnInit(event?) {
     this.getDate();
+    this.cambioFormato();
+    while(this.Horario.length>0){
+      this.Horario.pop();
+    }
     this.horarioService.getHorario(this.today)
       .subscribe(resp=>{
         console.log(resp);
@@ -159,5 +165,19 @@ export class ReservarHoraPage implements OnInit {
 
       })
   }
+  doRefresh(event){
+    this.ngOnInit(event);
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 1000);
+
+  }
+  cambioFormato(){
+    let ChangedFormat = this.pipe.transform(this.today, 'dd-MM-YYYY');
+    this.changedDate = ChangedFormat;
+    console.log(this.changedDate);
+  }
+  
 
 }

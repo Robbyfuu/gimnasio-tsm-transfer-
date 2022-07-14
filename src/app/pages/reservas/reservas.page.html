@@ -14,6 +14,9 @@
 
 
     <!-- Refresher -->
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
 
 
 
@@ -35,6 +38,7 @@
                                     (click)="horario.horario= post.horario"
                                     (click)="horario.fecha= post.fecha"
                                     (click)="idPost=post._id"
+                                    *ngIf="post.fecha>= changedDate"
                                      >
                             Anular Reserva
                         </ion-button>
