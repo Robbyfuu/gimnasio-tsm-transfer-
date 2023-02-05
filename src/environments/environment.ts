@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url: 'https://back-gym.herokuapp.com'
+  url: 'http://localhost:3000'
 };
 
 /*
